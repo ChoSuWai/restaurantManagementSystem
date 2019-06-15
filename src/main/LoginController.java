@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import admin.AdminController;
 import cashier.CashierController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,44 +51,43 @@ public class LoginController {
     		
     	}else if(nameField.getText().equals(tmpName) && passwordField.getText().equals(password)) {
     		
-    		if(rdoRole.getSelectedToggle()==rdoCashier) {
-    			
+    		RadioButton roles=(RadioButton) rdoRole.getSelectedToggle();
+    		if(roles.getText().equals("Cashier")) {
     			CashierController cashier=new CashierController();
-    	        Stage oldStage=(Stage) loginBtn.getScene().getWindow();
-    	        try {
+    			Stage oldStage=(Stage) loginBtn.getScene().getWindow();
+    			try {
     				cashier.start(oldStage);
-    				
+				
     			} catch (IOException e) {
     				e.printStackTrace();
-    				
+				
     			}
-    	        
     		}else {
-    			JOptionPane.showMessageDialog(null, "You should select Cashier Role!", "Login Operation", JOptionPane.WARNING_MESSAGE);
+    			AdminController admin=new AdminController();
+    			Stage oldStage=(Stage) loginBtn.getScene().getWindow();
+    			try {
+    				admin.start(oldStage);
+				
+    			} catch (IOException e) {
+    				e.printStackTrace();
+				
+    			}
+    			
     		}
-    		
 	        
     	}else {               
     		JOptionPane.showMessageDialog(null, "Your name and password are wrong!", "Login Operation", JOptionPane.WARNING_MESSAGE);
     	
     	}
-<<<<<<< HEAD
-=======
-    	
-    	
 	
 	        
->>>>>>> master
 	        
     }
 
 
     @FXML
     void handleCancelOperation(ActionEvent event) {
-    	nameField.clear();
-    	passwordField.clear();
-    	nameField.requestFocus();
-    	
+
     }
     
 

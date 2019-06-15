@@ -31,15 +31,15 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <RadioButton fx:id="rdoAdmin" mnemonicParsing="false" text="Admin" textFill="WHITE">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="rdoRole" />
+                           </toggleGroup>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="rdoRole" />
-                           </toggleGroup>
                         </RadioButton>
                         <RadioButton fx:id="rdoCashier" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Cashier" textFill="WHITE" toggleGroup="$rdoRole">
                            <font>

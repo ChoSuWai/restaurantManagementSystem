@@ -2,13 +2,21 @@ package cashier;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -19,12 +27,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.Main;
 
 public class CashierController implements Initializable {
 
 	@FXML
-    private AnchorPane anchorPane;
+    private AnchorPane cashierPane;
 	
     @FXML
     private Label totalLabel;
@@ -61,6 +71,9 @@ public class CashierController implements Initializable {
 
     @FXML
     private Button receiptBtn;
+    
+    @FXML
+    private Label lblBack;
     
     /**
      * Initializes the controller class.
@@ -137,6 +150,23 @@ public class CashierController implements Initializable {
     }
     
 //    @FXML
+//    private void backToMain(ActionEvent event) throws IOException{
+//    	//Changing from this ArrayListController to MainClass
+//        
+////        Main main=new Main();
+////        Stage oldStage=(Stage) lblBack.getScene().getWindow();
+////        try {
+////			main.start(oldStage);
+////		} catch (IOException e) {
+////			// TODO Auto-generated catch block
+////			e.printStackTrace();
+////		}
+////    	 Parent root = FXMLLoader.load(getClass().getResource("/main/login.fxml"));
+////         cashierPane.getChildren().clear();
+////         cashierPane.getChildren().add(root);
+//    }
+    
+//    @FXML
 //    void cboCategoriesOperation(ActionEvent event) {
 ////    	String chosenItem=choiceBox.getSelectionModel().getSelectedItem();
 ////
@@ -151,11 +181,11 @@ public class CashierController implements Initializable {
 		
 		  FXMLLoader loader = new FXMLLoader(getClass().getResource("/cashier/cashier.fxml"));
           
-	      anchorPane = loader.load();
+		  cashierPane = loader.load();
 	           
 	      newStage.setTitle("Cashier View!");
 	      //newStage.setScene(new Scene(anchorPane, 2000, 700, Color.WHITESMOKE));
-	      newStage.setScene(new Scene(anchorPane));
+	      newStage.setScene(new Scene(cashierPane));
 	      newStage.show();
 		
 	}
