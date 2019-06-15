@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="700.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cashier.CashierController">
+   <children>
+      <HBox prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane prefHeight="400.0" prefWidth="400.0">
+               <center>
+                  <VBox fx:id="costPane" alignment="CENTER" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="cafeName" text="Cafe Cho Cho">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TableView fx:id="tableView">
+                          <columns>
+                            <TableColumn fx:id="itemColumn" minWidth="200.0" prefWidth="75.0" text="Item_Name" />
+                            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+                              <TableColumn fx:id="priceColumn" minWidth="90.0" prefWidth="75.0" text="Price" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="400.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="totalLabel" text="Total :">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="totalField">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="editBtn" mnemonicParsing="false" onAction="#handleEditBtn" text="Edit/Delete" />
+                              <Button fx:id="receiptBtn" mnemonicParsing="false" onAction="#handleReceiptBtn" prefHeight="35.0" prefWidth="100.0" text="Receipt">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </center></BorderPane>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <BorderPane prefHeight="400.0" prefWidth="1000.0">
+               <center>
+                  <FlowPane fx:id="flowPane" prefHeight="400.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="20.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </FlowPane>
+               </center>
+               <top>
+                  <VBox prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ChoiceBox fx:id="choiceBox"  prefHeight="30.0" prefWidth="180.0">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
+                        <Separator>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Separator>
+                     </children>
+                  </VBox>
+               </top>
+            </BorderPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

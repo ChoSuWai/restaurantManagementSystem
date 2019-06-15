@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.LoginController">
+   <children>
+      <ImageView fitHeight="669.0" fitWidth="1225.0" pickOnBounds="true" preserveRatio="true" scaleX="1.3" scaleY="1.1">
+         <image>
+            <Image url="@../Image/mainpage.jpeg" />
+         </image>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </ImageView>
+      <BorderPane maxHeight="500.0" maxWidth="500.0" opacity="0.65" prefHeight="410.0" prefWidth="600.0" style="-fx-background-color: black;">
+         <center>
+            <GridPane prefHeight="300.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name :" textAlignment="RIGHT" wrappingWidth="150.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Text>
+                  <TextField fx:id="nameField" GridPane.columnIndex="1" />
+                  <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton fx:id="rdoAdmin" mnemonicParsing="false" text="Admin" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="rdoCashier" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" text="Cashier" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginOperation" prefHeight="40.0" prefWidth="100.0" text="Login">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="cancelBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCancelOperation" prefHeight="40.0" prefWidth="100.0" text="Cancel">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" textAlignment="RIGHT" wrappingWidth="150.0" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role :" textAlignment="RIGHT" wrappingWidth="150.0" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="151.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="149.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="30.0" right="30.0" top="15.0" />
+               </BorderPane.margin>
+            </GridPane>
+         </center>
+         <top>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant Management System">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="25.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="WHITE" layoutX="204.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Form">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Separator prefWidth="200.0" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>
