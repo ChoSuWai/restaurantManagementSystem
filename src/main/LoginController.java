@@ -60,8 +60,6 @@ public class LoginController {
     		JOptionPane.showMessageDialog(null, "Your name and password are wrong!", "Login Operation", JOptionPane.WARNING_MESSAGE);
     	
     	}
-	
-	        
 	        
     }
 
