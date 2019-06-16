@@ -1,2 +1,9 @@
 /admin/
 /database/
+<<<<<<< HEAD
+=======
+/main/
+/dao/
+/admin/
+/model/
+>>>>>>> master
