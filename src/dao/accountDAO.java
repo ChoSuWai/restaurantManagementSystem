@@ -20,7 +20,7 @@ public class accountDAO {
         //List list = new ArrayList();
         String[] accList=new String[4];
         while(result.next()){
-            int id = result.getInt("id");
+            int id = result.getInt("acc_id");
             String name = result.getString("name");
             String password = result.getString("password");
             String role = result.getString("role");
