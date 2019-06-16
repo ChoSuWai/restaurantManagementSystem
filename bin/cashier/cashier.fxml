@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="700.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cashier.CashierController">
+<AnchorPane id="AnchorPane" fx:id="cashierPane" prefHeight="700.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cashier.CashierController">
    <children>
       <HBox prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -77,7 +77,13 @@
                         </HBox>
                      </children>
                   </VBox>
-               </center></BorderPane>
+               </center>
+               <bottom>
+                  <Label fx:id="lblBack" text="&lt;&lt;&lt;Back" BorderPane.alignment="BOTTOM_LEFT" />
+               </bottom>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></BorderPane>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <BorderPane prefHeight="400.0" prefWidth="1000.0">
                <center>
@@ -90,7 +96,7 @@
                <top>
                   <VBox prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ChoiceBox fx:id="choiceBox"  prefHeight="30.0" prefWidth="180.0">
+                        <ChoiceBox fx:id="choiceBox" prefHeight="30.0" prefWidth="180.0">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
