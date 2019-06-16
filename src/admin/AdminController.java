@@ -115,7 +115,7 @@ public class AdminController implements Initializable{
         
 		  adminPane = loader.load();
 	           
-	      newStage.setTitle("Cashier View!");
+	      newStage.setTitle("Admin View!");
 	      //newStage.setScene(new Scene(anchorPane, 2000, 700, Color.WHITESMOKE));
 	      newStage.setScene(new Scene(adminPane));
 	      newStage.show();

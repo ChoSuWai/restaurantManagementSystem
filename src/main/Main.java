@@ -1,18 +1,31 @@
 package main;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+import java.sql.SQLException;
+
+import database.Database;
+
+
 public class Main extends Application {
 
 	 @Override
-	    public void start(Stage stage) throws IOException{
+	    public void start(Stage stage) throws Exception {
 		 
+		 
+		 try {
+	            Database db = Database.getInstance();
+	            System.out.println("Connected to database");
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	            System.out.println("Cannot connect to database.Plz check the server configuration.");
+	        }
+		 	
 	        Parent root = FXMLLoader.load(getClass().getResource("/main/login.fxml"));
 	        Scene scene = new Scene(root);
 	        stage.setScene(scene);
@@ -23,8 +36,8 @@ public class Main extends Application {
 
 	    
 	    public static void main(String[] args) {
-	    	///hello errors nice
 	        launch(args);
 	    } 
 
 }
+

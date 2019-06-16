@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.postgresql.util.LruCache.CreateAction;
-
 public class Database {
 
 	 private static String url = "jdbc:postgresql://localhost:5432/restaurantdb";
@@ -44,10 +42,12 @@ public class Database {
 	    public void creatTables() throws SQLException{
 	    	
 	        String sql1 = "create table if not exists account (id int primary key,name varchar(40),password varchar(40),role varchar(40))";
+	        String insertSql="insert into account (id,name,password,role) values (1,'admin','123','Cashier')"; 
 	        Statement stmt1 = conn.createStatement();
 	        stmt1.execute(sql1);
+	        stmt1.execute(insertSql);
 	        
-	        String sql2 = "create table if not exists items (id int primary key ,name varchar(40),price int,stock int)";
+	        String sql2 = "create table if not exists items (id int primary key,name varchar(40),price int,stock int)";
 	        Statement stmt2 = conn.createStatement();
 	        stmt2.execute(sql2);
 //	        
