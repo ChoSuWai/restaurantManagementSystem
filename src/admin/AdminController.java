@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.Main;
 
 public class AdminController implements Initializable{
 
@@ -62,7 +63,7 @@ public class AdminController implements Initializable{
 	    private AnchorPane adminPane;
 
 	    @FXML
-	    private Button existBtn;
+	    private Button btnBack;
 
 	    @FXML
 	    private StackPane centerPane;
@@ -105,7 +106,19 @@ public class AdminController implements Initializable{
     }
 
     @FXML
-    void startExistBtnAction(ActionEvent event) {
+    void backToLoginForm(ActionEvent event) throws Exception {
+    	
+    	Main main=new Main();
+        Stage oldStage=(Stage) btnBack.getScene().getWindow();
+        oldStage.setMaximized(false);
+        
+        try {
+        	
+			main.start(oldStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
     }
 

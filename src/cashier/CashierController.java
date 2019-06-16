@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -20,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.Main;
 
 public class CashierController implements Initializable {
 
@@ -63,7 +65,7 @@ public class CashierController implements Initializable {
     private Button receiptBtn;
     
     @FXML
-    private Label lblBack;
+    private Button btnBack;
     
     /**
      * Initializes the controller class.
@@ -139,22 +141,24 @@ public class CashierController implements Initializable {
 
     }
     
-//    @FXML
-//    private void backToMain(ActionEvent event) throws IOException{
-//    	//Changing from this ArrayListController to MainClass
-//        
-////        Main main=new Main();
-////        Stage oldStage=(Stage) lblBack.getScene().getWindow();
-////        try {
-////			main.start(oldStage);
-////		} catch (IOException e) {
-////			// TODO Auto-generated catch block
-////			e.printStackTrace();
-////		}
-////    	 Parent root = FXMLLoader.load(getClass().getResource("/main/login.fxml"));
-////         cashierPane.getChildren().clear();
-////         cashierPane.getChildren().add(root);
-//    }
+    @FXML
+    private void backToMain(ActionEvent event) throws Exception{
+    
+        Main main=new Main();
+        Stage oldStage=(Stage) btnBack.getScene().getWindow();
+        oldStage.setMaximized(false);
+        
+        try {
+        	
+			main.start(oldStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//    	 Parent root = FXMLLoader.load(getClass().getResource("/main/login.fxml"));
+//         cashierPane.getChildren().clear();
+//         cashierPane.getChildren().add(root);
+    }
     
 //    @FXML
 //    void cboCategoriesOperation(ActionEvent event) {

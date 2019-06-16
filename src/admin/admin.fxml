@@ -28,24 +28,42 @@
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" textAlignment="RIGHT" wrappingWidth="130.0">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="18.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
                               </Text>
-                              <TextField fx:id="idField" GridPane.columnIndex="1" />
+                              <TextField fx:id="idField" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="30.0" />
+                                 </GridPane.margin></TextField>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="1">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="18.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
                               </Text>
-                              <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="30.0" />
+                                 </GridPane.margin></TextField>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="18.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
                               </Text>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <ChoiceBox fx:id="choiceBox" prefWidth="160.0" />
+                                    <ChoiceBox fx:id="choiceBox" prefWidth="160.0">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin></ChoiceBox>
                                     <Button fx:id="addBtn" mnemonicParsing="false" onAction="#HandleAddCategory" prefWidth="60.0" text="+Add">
                                        <font>
                                           <Font size="13.0" />
@@ -55,10 +73,16 @@
                               </HBox>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="3">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="18.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
                               </Text>
-                              <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="30.0" />
+                                 </GridPane.margin></TextField>
                               <HBox alignment="CENTER_LEFT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="35.0" prefWidth="100.0" text="Add Item">
@@ -112,9 +136,15 @@
                <children>
                   <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="itemBtn" mnemonicParsing="false" onAction="#startItemBtnAction" prefHeight="80.0" prefWidth="100.0" text="Item" />
-                        <Button fx:id="accountBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#startAccountBtnAction" prefHeight="80.0" prefWidth="100.0" text="Account" />
-                        <Button fx:id="existBtn" mnemonicParsing="false" onAction="#startExistBtnAction" prefHeight="30.0" prefWidth="100.0" text="Exist">
+                        <Button fx:id="itemBtn" mnemonicParsing="false" onAction="#startItemBtnAction" prefHeight="80.0" prefWidth="100.0" text="Item">
+                           <VBox.margin>
+                              <Insets top="53.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="accountBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#startAccountBtnAction" prefHeight="80.0" prefWidth="100.0" text="Account">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
+                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backToLoginForm" prefHeight="30.0" prefWidth="100.0" text="&lt;&lt;&lt;Back">
                            <VBox.margin>
                               <Insets top="210.0" />
                            </VBox.margin>
