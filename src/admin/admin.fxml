@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -10,150 +12,174 @@
 <AnchorPane fx:id="adminPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminController">
    <children>
       <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <StackPane fx:id="centerPane" BorderPane.alignment="CENTER">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <VBox fx:id="itemVBox" alignment="TOP_CENTER">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adding Items">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="15.0" top="15.0" />
-                           </VBox.margin>
-                        </Text>
-                        <Separator prefWidth="200.0" />
-                        <GridPane alignment="CENTER" hgap="10.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" textAlignment="RIGHT" wrappingWidth="130.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="100.0" />
-                                 </GridPane.margin>
-                              </Text>
-                              <TextField fx:id="idField" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets right="30.0" />
-                                 </GridPane.margin></TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="100.0" />
-                                 </GridPane.margin>
-                              </Text>
-                              <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets right="30.0" />
-                                 </GridPane.margin></TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="100.0" />
-                                 </GridPane.margin>
-                              </Text>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="140.0" text="ManageInfo" textFill="WHITE">
+                     
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton prefHeight="45.0" prefWidth="140.0" text="ViewReports" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backToLoginForm" prefHeight="60.0" prefWidth="140.0" text="BackToLoginForm">
+                     <VBox.margin>
+                        <Insets top="620.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXTabPane>
+                     <tabs>
+                        <Tab text="Add Item">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ChoiceBox fx:id="choiceBox" prefWidth="160.0">
-                                       <HBox.margin>
-                                          <Insets right="30.0" />
-                                       </HBox.margin></ChoiceBox>
-                                    <Button fx:id="addBtn" mnemonicParsing="false" onAction="#HandleAddCategory" prefWidth="60.0" text="+Add">
-                                       <font>
-                                          <Font size="13.0" />
-                                       </font>
-                                    </Button>
+                                    <HBox alignment="CENTER" layoutX="48.0" layoutY="88.0" prefHeight="463.0" prefWidth="960.0">
+                                       <children>
+                                          <VBox maxHeight="400.0" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: #fff;">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="375.0">
+                                                   <children>
+                                                      <Label text="Add Item">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <JFXTextField fx:id="idField" promptText="Item ID">
+                                                  <!--  <VBox.margin>
+                                                      <Insets left="40.0" right="40.0" top="20.0" />
+                                                   </VBox.margin>--></JFXTextField>
+                                                <JFXTextField fx:id="nameField" promptText="Name">
+                                                   <!-- <VBox.margin>
+                                                      <Insets left="40.0" right="40.0" top="10.0" />
+                                                   </VBox.margin>--></JFXTextField>
+                                                <HBox prefHeight="26.0" prefWidth="375.0">
+                                                   <children>
+                                                      <Label text="Category :">
+                                                         <!-- <HBox.margin>
+                                                            <Insets left="40.0" />
+                                                         </HBox.margin>-->
+                                                      </Label>
+                                                      <ChoiceBox fx:id="categoryBox" prefHeight="25.0" prefWidth="124.0">
+                                                         <HBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </HBox.margin>
+                                                      </ChoiceBox>
+                                                      <Button fx:id="btnAddCategoryBox" mnemonicParsing="false" onAction="#addCategoryAction" text="+Add">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="30.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <JFXTextField fx:id="priceField" promptText="Price">
+                                                   <!-- <VBox.margin>
+                                                      <Insets left="40.0" right="40.0" top="10.0" />
+                                                   </VBox.margin>--></JFXTextField>
+                                                <HBox alignment="CENTER" prefHeight="80.0" prefWidth="310.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnAddItem" onAction="#handleAddItem" prefHeight="45.0" prefWidth="258.0" style="-fx-background-color: #00bcd4;" text="Add Item" textFill="WHITE">
+                                                        <!-- <HBox.margin>
+                                                            <Insets right="20.0" top="10.0" />
+                                                         </HBox.margin>-->
+                                                      </JFXButton>
+                                                   </children>
+                                                   <!-- <VBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </VBox.margin>-->
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="30.0" layoutY="271.0" prefHeight="80.0" prefWidth="310.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnEditItem" onAction="#handelEditItem" prefHeight="45.0" prefWidth="258.0" style="-fx-background-color: #00bcd4;" text="Edit Item" textFill="WHITE">
+                                                         <!-- <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>-->
+                                                      </JFXButton>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="316.0" prefHeight="80.0" prefWidth="310.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnDeleteItem" onAction="#handleDeleteItem" prefHeight="45.0" prefWidth="258.0" style="-fx-background-color: #00bcd4;" text="Delete Item" textFill="WHITE">
+                                                        <!-- <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>-->
+                                                      </JFXButton>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="300.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox maxHeight="400.0" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: #fff;">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="375.0">
+                                                   <children>
+                                                      <Label text="Add Category">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                         <HBox.margin>
+                                                            <Insets left="40.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <JFXTextField fx:id="categoryField" promptText="Write Category">
+                                                <!--  <VBox.margin>
+                                                      <Insets left="40.0" right="40.0" top="20.0" />
+                                                   </VBox.margin>--></JFXTextField>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnAddCategory" onAction="#handleAddCategory" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #00bcd4;" text="Add Category" textFill="WHITE">
+                                                         
+                                                      </JFXButton>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
                                  </children>
-                              </HBox>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="3">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="100.0" />
-                                 </GridPane.margin>
-                              </Text>
-                              <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets right="30.0" />
-                                 </GridPane.margin></TextField>
-                              <HBox alignment="CENTER_LEFT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <children>
-                                    <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="35.0" prefWidth="100.0" text="Add Item">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="viewItemsBtn" mnemonicParsing="false" onAction="#HandleViewItems" prefHeight="35.0" prefWidth="100.0" text="View Items" />
-                                 </children>
-                              </HBox>
-                              <VBox fx:id="categoryBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.columnIndex="2" GridPane.rowSpan="5">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Category">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <Separator prefWidth="200.0" />
-                                    <TextField fx:id="categoryField" alignment="CENTER" promptText=" ---Write Category---">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Button fx:id="categoryBtn" mnemonicParsing="false" onAction="#AddCategoryAction" prefHeight="30.0" prefWidth="100.0" text="Add Category" />
-                                 </children>
-                              </VBox>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="535.0" minWidth="10.0" prefWidth="143.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="207.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="207.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="70.0" minHeight="1.0" prefHeight="53.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="95.0" minHeight="0.0" prefHeight="51.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="107.0" minHeight="0.0" prefHeight="102.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <VBox.margin>
-                              <Insets left="80.0" right="30.0" top="20.0" />
-                           </VBox.margin>
-                        </GridPane>
-                     </children>
-                  </VBox>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Delete/Update Item" />
+                        <Tab text="View Item" />
+                     </tabs>
+                  </JFXTabPane>
                </children>
             </StackPane>
          </center>
-         <left>
-            <AnchorPane BorderPane.alignment="CENTER">
-               <children>
-                  <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="itemBtn" mnemonicParsing="false" onAction="#startItemBtnAction" prefHeight="80.0" prefWidth="100.0" text="Item">
-                           <VBox.margin>
-                              <Insets top="53.0" />
-                           </VBox.margin></Button>
-                        <Button fx:id="accountBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#startAccountBtnAction" prefHeight="80.0" prefWidth="100.0" text="Account">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin></Button>
-                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backToLoginForm" prefHeight="30.0" prefWidth="100.0" text="&lt;&lt;&lt;Back">
-                           <VBox.margin>
-                              <Insets top="210.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </left>
       </BorderPane>
    </children>
 </AnchorPane>

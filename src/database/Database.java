@@ -50,7 +50,7 @@ public class Database {
 //	        String sql3 = "create table if not exists category (id int primary key,type varchar(20),item_id int,quantity int,sign varchar(40),remark varchar(255),transaction_date date,foreign key (item_id) references items(id))";
 //	        Statement stmt3 = conn.createStatement();
 //	        stmt3.execute(sql3);
-//	        
+//        
 //	        String sql2 = "create table if not exists items (id int primary key,name varchar(40),category varchar(40),price int)";
 //	        Statement stmt2 = conn.createStatement();
 //	        stmt2.execute(sql2);

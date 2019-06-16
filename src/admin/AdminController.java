@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,63 +23,44 @@ import main.Main;
 
 public class AdminController implements Initializable{
 
-	 @FXML
-	    private TextField idField;
+	@FXML
+    private JFXTextField idField;
 
-	    @FXML
-	    private VBox categoryBox;
-
-	    @FXML
-	    private VBox itemVBox;
-
-	    @FXML
-	    private TextField nameField;
-
-	    @FXML
-	    private Button itemBtn;
-
-	    @FXML
-	    private Button addBtn;
-
-	    @FXML
-	    private Button viewItemsBtn;
-
-	    @FXML
-	    private TextField categoryField;
-
-	    @FXML
-	    private Button accountBtn;
-
-	    @FXML
-	    private TextField priceField;
-
-	    @FXML
-	    private Button categoryBtn;
-
-	    @FXML
-	    private Button addItemBtn;
-
-	    @FXML
-	    private ChoiceBox<?> choiceBox;
-
-	    @FXML
-	    private AnchorPane adminPane;
-
-	    @FXML
-	    private Button btnBack;
-
-	    @FXML
-	    private StackPane centerPane;
-
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	
     @FXML
-    void HandleAddCategory(ActionEvent event) {
+    private JFXTextField categoryField;
+
+    @FXML
+    private Button btnBack;
+
+    @FXML
+    private Button btnAddCategoryBox;
+    
+    @FXML
+    private ChoiceBox<?> categoryBox;
+
+    @FXML
+    private JFXTextField priceField;
+
+    @FXML
+    private JFXButton btnAddCategory;
+
+    @FXML
+    private JFXButton btnAddItem;
+
+    @FXML
+    private JFXButton btnEditItem;
+
+    @FXML
+    private JFXTextField nameField;
+
+    @FXML
+    private AnchorPane adminPane;
+
+    @FXML
+    private JFXButton btnDeleteItem;
+
+    @FXML
+    void addCategoryAction(ActionEvent event) {
 
     }
 
@@ -86,25 +70,21 @@ public class AdminController implements Initializable{
     }
 
     @FXML
-    void HandleViewItems(ActionEvent event) {
+    void handelEditItem(ActionEvent event) {
 
     }
 
     @FXML
-    void AddCategoryAction(ActionEvent event) {
+    void handleDeleteItem(ActionEvent event) {
 
     }
 
     @FXML
-    void startItemBtnAction(ActionEvent event) {
+    void handleAddCategory(ActionEvent event) {
 
     }
-
-    @FXML
-    void startAccountBtnAction(ActionEvent event) {
-
-    }
-
+   
+   
     @FXML
     void backToLoginForm(ActionEvent event) throws Exception {
     	
@@ -132,6 +112,12 @@ public class AdminController implements Initializable{
 	      //newStage.setScene(new Scene(anchorPane, 2000, 700, Color.WHITESMOKE));
 	      newStage.setScene(new Scene(adminPane));
 	      newStage.show();
+		
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		
 	}
 
