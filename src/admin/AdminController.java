@@ -1,5 +1,6 @@
 package admin;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,9 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Main;
@@ -24,40 +27,88 @@ import main.Main;
 public class AdminController implements Initializable{
 
 	@FXML
-    private JFXTextField idField;
+    private TextField idField;
 
-    @FXML
-    private JFXTextField categoryField;
-
-    @FXML
-    private Button btnBack;
-
-    @FXML
-    private Button btnAddCategoryBox;
-    
     @FXML
     private ChoiceBox<?> categoryBox;
-
-    @FXML
-    private JFXTextField priceField;
-
-    @FXML
-    private JFXButton btnAddCategory;
 
     @FXML
     private JFXButton btnAddItem;
 
     @FXML
-    private JFXButton btnEditItem;
+    private ChoiceBox<?> roleField;
 
     @FXML
-    private JFXTextField nameField;
+    private TextField confirmField;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private VBox billPane;
+
+    @FXML
+    private VBox billPane1;
+
+    @FXML
+    private Button editIAccBtn;
+
+    @FXML
+    private JFXTextField categoryField;
+
+    @FXML
+    private PasswordField passField;
+
+    @FXML
+    private Label itemName;
+
+    @FXML
+    private Button btnAddCategoryBox;
+
+    @FXML
+    private JFXTextField priceField;
+
+    @FXML
+    private Button viewIAccBtn;
 
     @FXML
     private AnchorPane adminPane;
 
     @FXML
+    private Label addAccount;
+
+    @FXML
+    private TableColumn<?, ?> priceColumn;
+
+    @FXML
+    private Button btnBack;
+
+    @FXML
+    private Button deleteAccBtn;
+
+    @FXML
+    private TableView<?> tableView;
+
+    @FXML
+    private TableColumn<?, ?> itemColumn;
+
+    @FXML
+    private TableColumn<?, ?> quantityColumn;
+
+    @FXML
+    private Button addIAccBtn;
+
+    @FXML
+    private JFXButton btnAddCategory;
+
+    @FXML
+    private JFXButton btnEditItem;
+
+    @FXML
     private JFXButton btnDeleteItem;
+
+    @FXML
+    private TableColumn<?, ?> idColumn;
 
     @FXML
     void addCategoryAction(ActionEvent event) {
@@ -83,7 +134,26 @@ public class AdminController implements Initializable{
     void handleAddCategory(ActionEvent event) {
 
     }
-   
+
+    @FXML
+    void handleAddAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleViewAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleEditAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleDeleteAccount(ActionEvent event) {
+
+    }
    
     @FXML
     void backToLoginForm(ActionEvent event) throws Exception {

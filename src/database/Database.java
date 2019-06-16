@@ -11,7 +11,7 @@ public class Database {
 
 	 private static String url = "jdbc:postgresql://localhost:5432/restaurantdb";
 	    private static String user = "postgres";
-	    private static String password = "4444asdf";
+	    private static String password = "222068";
 	    
 	    private Connection conn;
 	    
@@ -61,17 +61,17 @@ public class Database {
 	    public void creatTables() throws SQLException{
 	    	
 	        String createAcc = "create table if not exists account (acc_id int primary key,name varchar(40),password varchar(40),role varchar(40))";        
-	        String insertSql="insert into account (acc_id,name,password,role) values (2,'admin','123','Cashier')"; 
+	        String insertSql="insert into account (acc_id,name,password,role) values (2,'admin','123','Admin')"; 
 	        String createCategory = "create table if not exists category (category varchar(40)primary key)";    
 //	        String sql3 = "create table if not exists category (id int primary key,type varchar(20),item_id int,quantity int,sign varchar(40),remark varchar(255),transaction_date date,foreign key (item_id) references items(id))";
-<<<<<<< HEAD
+
 //	        Statement stmt3 = conn.createStatement();
 //	        stmt3.execute(sql3);
 //        
 //	        String sql2 = "create table if not exists items (id int primary key,name varchar(40),category varchar(40),price int)";
 //	        Statement stmt2 = conn.createStatement();
 //	        stmt2.execute(sql2);
-=======
+
 	        String createItems = "create table if not exists items (item_id int primary key,item_name varchar(40),category varchar(40),price varchar(40))";            	      
 	        String createSoldItems = "create table if not exists soldItems (name varchar(40),quantity int,price varchar(40))";    
 	        
@@ -81,7 +81,7 @@ public class Database {
 	        stmt.execute(createCategory);
 	        stmt.execute(createItems);
 	        stmt.execute(createSoldItems);
->>>>>>> master
+
 	        
 	    }
 	    //need to Check and Change
