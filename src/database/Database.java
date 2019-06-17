@@ -215,7 +215,17 @@ public class Database {
 			}
 			return null;
 		}
-	    
+	    public ResultSet getItemById(int id) {
+	    	String query="Select * From items Where item_id=?";
+			try {
+	    		preStmt=conn.prepareStatement(query);
+	    		preStmt.setInt(1, id);
+	    		return preStmt.executeQuery();		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	    public ResultSet getItemName(String itemName) {
 	    	String query="Select * From items Where item_name=?";
 			try {
@@ -245,5 +255,34 @@ public class Database {
 	    public Connection getConnection(){
 	        return conn;
 	    }
+
+		public boolean updateItemData(int id, String name, String category, double price) {
+			String query="Update items Set item_name=?,category=?,price=? Where item_id=?";
+			try {
+	    		preStmt=conn.prepareStatement(query);
+	    		preStmt.setString(1, name);
+	    		preStmt.setString(2, category);
+	    		preStmt.setString(3, String.valueOf(price));
+	    		preStmt.setInt(4, id);
+	    		return preStmt.execute();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+			
+		}
+
+		public boolean deleteItemData(int id) {
+			String query="Delete From items Where item_id=?";
+			try {
+	    		preStmt=conn.prepareStatement(query);
+	    		preStmt.setInt(1, id);
+	    		return preStmt.execute();		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
 	    
 }

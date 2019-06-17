@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import database.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

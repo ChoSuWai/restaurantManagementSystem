@@ -102,6 +102,11 @@ public class AdminController implements Initializable{
     private Button btnBack;
     @FXML
     private StackPane stackPane;
+    
+    @FXML
+    private TextField oldIdField;
+    @FXML
+    private JFXButton btnProcess;
  
 
     @FXML
@@ -223,11 +228,11 @@ public class AdminController implements Initializable{
     		}else {
     			int id=Integer.parseInt(idStr);
     			double price=Double.valueOf(priceStr);
-    			boolean ok=db.addItem(id,name,category,price);
-    			if(ok) {
+    			db.addItem(id,name,category,price);
+//    			if(ok) {
     				JOptionPane.showMessageDialog(null, "Adding Item Completd.", "Adding Item Operation", JOptionPane.INFORMATION_MESSAGE);
     				clearItemFields();
-    			}//else {
+ //   			}//else {
 //    				JOptionPane.showMessageDialog(null, "Adding Item Failed.", "Adding Item Operation", JOptionPane.ERROR_MESSAGE);
 //    			}
     		}
@@ -260,11 +265,57 @@ public class AdminController implements Initializable{
     	
     }
 
+//    @FXML
+//    void itemIdFieldAction(ActionEvent event) throws NumberFormatException, SQLException {	
+//    }
+    @FXML
+    void handeBtnProcess(ActionEvent event) throws SQLException {
+  	
+		if(oldIdField.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Write item_id you wanna edit/delete and Click Process", "Editing Item Operation", JOptionPane.WARNING_MESSAGE);
+		
+		}else {	
+			String idStr=oldIdField.getText();
+			int id=Integer.parseInt(idStr);
+			ResultSet result=db.getItemById(id);
+			if(result.next()) {
+				String name=result.getString("item_name");
+		    	String category=result.getString("category");
+		    	String price=result.getString("price");
+				
+		    	itemIdField.setText(idStr);
+				itemNameField.setText(name);
+				choiceBox.getSelectionModel().select(category);
+				priceField.setText(price);
+			}else {
+				JOptionPane.showMessageDialog(null, "This Item_id Doesn't Exist.", "Editing/Deleting Item Operation", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+    }
 
 	@FXML
-    void handelEditItem(ActionEvent event) {
-
-    }
+    void handeEditItem(ActionEvent event) throws SQLException {
+		String idStr=itemIdField.getText();
+		String name=itemNameField.getText();
+    	String category=choiceBox.getValue();
+    	String priceStr=priceField.getText();
+		if(oldIdField.getText().isEmpty() || idStr.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Write item_id you wanna edit and Click Process", "Editing Item Operation", JOptionPane.WARNING_MESSAGE);
+		
+		}else {	
+			
+			int id=Integer.parseInt(idStr);		
+			double price=Double.valueOf(priceStr);
+			if(idStr.isEmpty()|| name.isEmpty()|| category==null|| priceStr.isEmpty()) {
+	    		JOptionPane.showMessageDialog(null, "Please, fill all fields!", "Editing Item Operation", JOptionPane.WARNING_MESSAGE);
+	    		return;
+	    	}else {
+	    		db.updateItemData(id,name,category,price);    	
+	    		JOptionPane.showMessageDialog(null, "Editing Item OK.", "Editing Item Operation", JOptionPane.INFORMATION_MESSAGE);
+	    		clearItemFields();
+	    	}
+		}
+	}
 	
 //	@FXML
 //	    void handelViewItemsTab(ActionEvent event) {
@@ -274,7 +325,18 @@ public class AdminController implements Initializable{
 
     @FXML
     void handleDeleteItem(ActionEvent event) {
-
+		String idStr=itemIdField.getText();
+		
+		if(oldIdField.getText().isEmpty() || idStr.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Write item_id you wanna delete and Click Process", "Deleting Item Operation", JOptionPane.WARNING_MESSAGE);
+		
+		}else {	
+			
+			int id=Integer.parseInt(idStr);		
+	    	db.deleteItemData(id);
+	    	JOptionPane.showMessageDialog(null, "Deleting Item OK.", "Deleting Item Operation", JOptionPane.INFORMATION_MESSAGE);
+	    	clearItemFields();
+		}
     }
     
     @FXML
@@ -308,11 +370,10 @@ public class AdminController implements Initializable{
         	if(count==1) {
         		JOptionPane.showMessageDialog(null, "This Account(Id) has already Existed.\nView AccountsList!", "Adding Account Operation", JOptionPane.WARNING_MESSAGE);
     		}else {
-    			boolean ok=db.addAccount(id,name,pass,role);
-    			if(ok) {
+    				db.addAccount(id,name,pass,role);
     				JOptionPane.showMessageDialog(null, "Adding Account Completd.", "Adding Account Operation", JOptionPane.INFORMATION_MESSAGE);
     				clearAccountFields();
-    			}
+    			
     		}
     	}
     }
@@ -326,7 +387,7 @@ public class AdminController implements Initializable{
 
     @FXML
     void handleEditAccount(ActionEvent event) {
-
+    	
     }
 
     @FXML
