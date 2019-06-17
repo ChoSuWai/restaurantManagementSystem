@@ -15,13 +15,13 @@
          <left>
             <VBox prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="140.0" text="ManageInfo" textFill="WHITE">
+                  <JFXButton fx:id="btnManageInfo" layoutX="10.0" layoutY="10.0" onAction="#handleManageInfo" prefHeight="45.0" prefWidth="140.0" text="ManageInfo" textFill="WHITE">
                      
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton prefHeight="45.0" prefWidth="140.0" text="ViewReports" textFill="WHITE">
+                  <JFXButton fx:id="btnViewReports" onAction="#handleViewReports" prefHeight="45.0" prefWidth="140.0" text="ViewReports" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -35,7 +35,7 @@
             </VBox>
          </left>
          <center>
-            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <JFXTabPane>
                      <tabs>
@@ -45,7 +45,7 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutX="48.0" layoutY="88.0" prefHeight="463.0" prefWidth="960.0">
                                        <children>
-                                          <VBox maxHeight="400.0" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: #fff;">
+                                          <VBox fx:id="itemVBox" maxHeight="400.0" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: #fff;">
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="375.0">
                                                    <children>
@@ -59,11 +59,11 @@
                                                       <Insets left="20.0" />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <JFXTextField fx:id="idField" promptText="Item ID">
+                                                <JFXTextField fx:id="itemIdField" promptText="Item ID">
                                                   <!--  <VBox.margin>
                                                       <Insets left="40.0" right="40.0" top="20.0" />
                                                    </VBox.margin>--></JFXTextField>
-                                                <JFXTextField fx:id="nameField" promptText="Name">
+                                                <JFXTextField fx:id="itemNameField" promptText="Name">
                                                    <!-- <VBox.margin>
                                                       <Insets left="40.0" right="40.0" top="10.0" />
                                                    </VBox.margin>--></JFXTextField>
@@ -74,14 +74,14 @@
                                                             <Insets left="40.0" />
                                                          </HBox.margin>-->
                                                       </Label>
-                                                      <ChoiceBox fx:id="categoryBox" prefHeight="25.0" prefWidth="124.0">
+                                                      <ChoiceBox fx:id="choiceBox" prefHeight="25.0" prefWidth="124.0">
                                                          <HBox.margin>
                                                             <Insets left="20.0" />
                                                          </HBox.margin>
                                                       </ChoiceBox>
-                                                      <Button fx:id="btnAddCategoryBox" mnemonicParsing="false" onAction="#addCategoryAction" text="+Add">
+                                                      <Button fx:id="btnAddCategoryBox" mnemonicParsing="false" onAction="#btnAddCategoryBoxAction" text="+Add">
                                                          <HBox.margin>
-                                                            <Insets left="10.0" />
+                                                            <Insets left="20.0" />
                                                          </HBox.margin>
                                                       </Button>
                                                    </children>
@@ -123,6 +123,11 @@
                                                       </JFXButton>
                                                    </children>
                                                 </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="335.0" prefHeight="80.0" prefWidth="310.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnViewItems" onAction="#handleViewItems" prefHeight="45.0" prefWidth="258.0" style="-fx-background-color: #00bcd4;" text="View Items" textFill="WHITE" />
+                                                   </children>
+                                                </HBox>
                                              </children>
                                              <effect>
                                                 <DropShadow />
@@ -134,7 +139,7 @@
                                                 <Insets left="300.0" />
                                              </HBox.margin>
                                           </VBox>
-                                          <VBox maxHeight="400.0" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: #fff;">
+                                          <VBox fx:id="categoryVBox" maxHeight="400.0" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: #fff;">
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="375.0">
                                                    <children>
@@ -154,7 +159,7 @@
                                                    </VBox.margin>--></JFXTextField>
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <JFXButton fx:id="btnAddCategory" onAction="#handleAddCategory" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #00bcd4;" text="Add Category" textFill="WHITE">
+                                                      <JFXButton fx:id="btnAddNewCategory" onAction="#handleAddNewCategory" prefHeight="42.0" prefWidth="155.0" style="-fx-background-color: #00bcd4;" text="Add Category" textFill="WHITE">
                                                          
                                                       </JFXButton>
                                                    </children>
@@ -173,14 +178,13 @@
                               </AnchorPane>
                            </content>
                         </Tab>
-                        <Tab text="Delete/Update Item" />
-                        <Tab text="View Item">
+                        <Tab fx:id="viewItemsTab" text="View Items">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <HBox alignment="CENTER" layoutX="48.0" layoutY="88.0" prefHeight="463.0" prefWidth="960.0">
                                        <children>
-                                          <VBox fx:id="billPane" alignment="CENTER" prefHeight="490.0" prefWidth="760.0">
+                                          <VBox alignment="CENTER" prefHeight="490.0" prefWidth="760.0">
                                              <children>
                                                 <Label text="Items">
                                                    <font>
@@ -190,11 +194,11 @@
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <TableView fx:id="tableView" prefHeight="440.0" prefWidth="720.0">
+                                                <TableView fx:id="itemsTableView" prefHeight="440.0" prefWidth="720.0">
                                                    <columns>
                                                       <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                                                       <TableColumn fx:id="itemColumn" minWidth="200.0" prefWidth="75.0" text="Item Name" />
-                                                      <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Category" />
+                                                      <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
                                                       <TableColumn fx:id="priceColumn" minWidth="90.0" prefWidth="75.0" text="Price" />
                                                    </columns>
                                                    <VBox.margin>
@@ -215,13 +219,13 @@
                               </AnchorPane>
                            </content>
                         </Tab>
-                        <Tab text="Accounts">
+                        <Tab text="AccountInfo">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <HBox alignment="CENTER" layoutX="48.0" layoutY="88.0" prefHeight="463.0" prefWidth="960.0">
                                        <children>
-                                          <VBox fx:id="billPane1" alignment="CENTER" prefHeight="490.0" prefWidth="760.0">
+                                          <VBox alignment="CENTER" prefHeight="490.0" prefWidth="760.0">
                                              <children>
                                                 <Label text="Adding Accounts">
                                                    <font>
@@ -244,7 +248,7 @@
                                                             <Insets left="100.0" />
                                                          </GridPane.margin>
                                                       </Text>
-                                                      <TextField fx:id="idField" prefHeight="46.0" prefWidth="407.0" GridPane.columnIndex="1">
+                                                      <TextField fx:id="accIdField" prefHeight="46.0" prefWidth="407.0" GridPane.columnIndex="1">
                                                          <GridPane.margin>
                                                             <Insets />
                                                          </GridPane.margin>
@@ -257,7 +261,7 @@
                                                             <Insets left="100.0" />
                                                          </GridPane.margin>
                                                       </Text>
-                                                      <TextField fx:id="nameField" prefHeight="44.0" prefWidth="407.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <TextField fx:id="accNameField" prefHeight="44.0" prefWidth="407.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <GridPane.margin>
                                                             <Insets />
                                                          </GridPane.margin>
@@ -288,15 +292,30 @@
                                                             <Insets />
                                                          </GridPane.margin>
                                                       </TextField>
-                                                      <HBox alignment="CENTER_LEFT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                      <HBox alignment="CENTER" spacing="20.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
                                                          <children>
-                                                            <Button fx:id="addIAccBtn" mnemonicParsing="false" onAction="#handleAddAccount" prefHeight="35.0" prefWidth="122.0" text="Add Account">
+                                                            <Button fx:id="addAccBtn" mnemonicParsing="false" onAction="#handleAddAccount" prefHeight="50.0" prefWidth="122.0" text="Add Account">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button fx:id="editAccBtn" mnemonicParsing="false" onAction="#handleEditAccount" prefHeight="50.0" prefWidth="122.0" text="Edit Account">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="viewIAccBtn" mnemonicParsing="false" onAction="#handleViewAccount" prefHeight="35.0" prefWidth="111.0" text="View Account" />
+                                                            <Button fx:id="deleteAccBtn" mnemonicParsing="false" onAction="#handleDeleteAccount" prefHeight="50.0" prefWidth="122.0" text="Delete Account" />
+                                                            <Button fx:id="viewAccBtn" mnemonicParsing="false" onAction="#handleViewAccount" prefHeight="50.0" prefWidth="122.0" text="View Accounts" />
                                                          </children>
+                                                         <GridPane.margin>
+                                                            <Insets left="50.0" top="20.0" />
+                                                         </GridPane.margin>
+                                                         <padding>
+                                                            <Insets left="50.0" />
+                                                         </padding>
                                                       </HBox>
                                                       <Text layoutX="224.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role :" textAlignment="RIGHT" wrappingWidth="130.0" GridPane.rowIndex="4">
                                                          <font>
@@ -307,16 +326,6 @@
                                                          </GridPane.margin>
                                                       </Text>
                                                       <ChoiceBox fx:id="roleField" prefHeight="39.0" prefWidth="405.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <HBox alignment="CENTER_LEFT" layoutX="224.0" layoutY="332.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                                         <children>
-                                                            <Button fx:id="editIAccBtn" mnemonicParsing="false" onAction="#handleEditAccount" prefHeight="35.0" prefWidth="122.0" text="Edit Account">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Button>
-                                                            <Button fx:id="deleteAccBtn" mnemonicParsing="false" onAction="#handleDeleteAccount" prefHeight="35.0" prefWidth="111.0" text="Delete Account" />
-                                                         </children>
-                                                      </HBox>
                                                    </children>
                                                    <columnConstraints>
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="535.0" minWidth="10.0" prefWidth="143.0" />

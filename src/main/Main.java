@@ -20,7 +20,7 @@ public class Main extends Application {
 		 
 		 try {
 	            Database db = Database.getInstance();
-	            System.out.println("Connected to database");
+	            
 	        } catch (SQLException e) {
 	        	e.printStackTrace();
 	            System.out.println("Cannot connect to database.Plz check the server configuration.");
