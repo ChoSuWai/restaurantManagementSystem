@@ -24,13 +24,11 @@ public class accountDAO {
             String name = result.getString("name");
             String password = result.getString("password");
             String role = result.getString("role");
-            //Category category = new Category(id, name);
-            //for(int i=0;i<accList.length;i++) {
-            	//accList[0]=String.valueOf(id);
+           
             	accList[0]=name;
             	accList[1]=password;
             	accList[2]=role;
-            //}
+            
         }
         return accList;
 	}
