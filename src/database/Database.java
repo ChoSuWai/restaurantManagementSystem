@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Database {
 
 	 private static String url = "jdbc:postgresql://localhost:5432/restaurantdb";
@@ -16,6 +18,7 @@ public class Database {
 	    private Connection conn;
 	    
 	    private static Database db;
+	    public static int count;
 	    
 	    private Statement stmt;
 	    private PreparedStatement preStmt;
@@ -25,15 +28,6 @@ public class Database {
 	        try {
 				 createConnection();
 				 creatTables();
-				 
-//				 addCategory("Breakfast");
-//				 addCategory("Lunch");
-//				 addCategory("Dinner");
-//				 addItem(1, "Noodle", "Breakfast", 200);
-//				 addItem(2, "Rice", "Breakfast", 100);
-//				 addItem(3, "Spicy", "Lunch", 200);
-//				 addItem(4, "Lotteria", "Lunch", 100);
-//				 addItem(5, "Pepsi", "Lunch", 100);
 				 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -73,17 +67,27 @@ public class Database {
 	        stmt.execute(createCategory);
 	        stmt.execute(createItems);
 	        stmt.execute(createSoldItems);
-	        ResultSet result=checkUser("cashier","123","Cashier");
-	        if(!result.next()) {
+	        ResultSet result=checkUser("admin","123","Admin");
+	        result.next();
+	        count=result.getInt("count");
+	    	if(count!=1) {
 	        	String createUser="Insert Into account (acc_id,name,password,role) Values (?,?,?,?)"; 	        	
 	        	preStmt=conn.prepareStatement(createUser);
-	        	preStmt.setInt(1, 2);
-	        	preStmt.setString(2,"cashier");
+	        	preStmt.setInt(1, 1);
+	        	preStmt.setString(2,"admin");
 	        	preStmt.setString(3,"123");
-	        	preStmt.setString(4,"Cashier");
+	        	preStmt.setString(4,"Admin");
 	        	preStmt.execute();      	
 	        	System.out.println("First User Created.This is done only Once at the beginning of software running");
-	        	
+	        	JOptionPane.showMessageDialog(null, "First AccountInfo:\naccount_name: 'admin'\npassword: '123'", "First Time Running Program!", JOptionPane.INFORMATION_MESSAGE);
+				 addCategory("Breakfast");
+				 addCategory("Lunch");
+				 addCategory("Dinner");
+				 addItem(1, "Bread", "Breakfast", 1000);
+				 addItem(2, "Rice", "Lunch", 2000);
+				 addItem(3, "Spicy", "Dinner", 2000);
+				 addItem(4, "EggNoodle", "Lunch", 3000);
+				 addItem(5, "PorkNoodle", "Lunch", 3000);
 	        }
 	        
 	    }
@@ -140,6 +144,17 @@ public class Database {
 	    		stmt=conn.createStatement();
 	    		return stmt.executeQuery(query);
 				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+	    public ResultSet getAccountById(int id) {
+	    	String query="Select * From account Where acc_id=?";
+			try {
+	    		preStmt=conn.prepareStatement(query);
+	    		preStmt.setInt(1, id);
+	    		return preStmt.executeQuery();		
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -284,5 +299,35 @@ public class Database {
 			}
 			return false;
 		}
+		
+		public boolean updateAccountData(int id, String name, String password, String role) {
+			String query="Update account Set name=?,password=?,role=? Where acc_id=?";
+			try {
+	    		preStmt=conn.prepareStatement(query);
+	    		preStmt.setString(1, name);
+	    		preStmt.setString(2, password);
+	    		preStmt.setString(3, role);
+	    		preStmt.setInt(4, id);
+	    		return preStmt.execute();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+			
+		}
+
+		public boolean deleteAccountData(int id) {
+			String query="Delete From account Where acc_id=?";
+			try {
+	    		preStmt=conn.prepareStatement(query);
+	    		preStmt.setInt(1, id);
+	    		return preStmt.execute();		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+
 	    
 }

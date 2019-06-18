@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,8 +25,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.Main;
 import model.Cashier;
@@ -140,6 +145,7 @@ public class CashierController implements Initializable {
 	              for (String food : list) {
 	                  Button button = new Button(food);
 	                  button.setPrefSize(100, 70);
+	                  button.setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE,CornerRadii.EMPTY,Insets.EMPTY)));
 	                  flowPane.getChildren().addAll(button);
 	                  flowPane.setHgap(20);
 	                  flowPane.setVgap(15);

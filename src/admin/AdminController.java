@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import database.Database;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,22 +18,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.Main;
-import model.Item;
 
 public class AdminController implements Initializable{
 
 	@FXML
-	private JFXButton btnManageInfo;
+	private Button btnManageInfo;
+	@FXML
+	private Button btnViewReports;
+	
 	@FXML
 	private VBox itemVBox; 
 	@FXML
@@ -62,19 +58,6 @@ public class AdminController implements Initializable{
     private JFXTextField categoryField;
     @FXML
     private JFXButton btnAddNewCategory;
-	 
-    @FXML
-    private Tab viewItemsTab;
-    @FXML
-    private TableView<Item> itemsTableView;
-    @FXML
-    private TableColumn<Item, Integer> idColumn;
-    @FXML
-    private TableColumn<Item, String> itemColumn;
-    @FXML
-    private TableColumn<Item, String> categoryColumn;
-    @FXML
-    private TableColumn<Item, Double> priceColumn;
     
 	
 	@FXML
@@ -107,10 +90,11 @@ public class AdminController implements Initializable{
     private TextField oldIdField;
     @FXML
     private JFXButton btnProcess;
- 
-
     @FXML
-    private JFXButton btnViewReports;
+    private TextField oldIdFieldAcc;
+    @FXML
+    private JFXButton btnProcessAcc;
+ 
  
     private Database db;
     public static int count;
@@ -119,43 +103,43 @@ public class AdminController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		db=new Database();
 		categoryVBox.setVisible(false);
-		initData();
-		loadItemsList();
+		//initData();
+		//loadItemsList();
 		//choiceBox.getItems().clear();
 		loadChoiceBoxData();
 		loadRoleBoxInAddAcc();
 		
 	}
     
-	private void initData() {
-    	idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-		itemColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-		priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-	
-	}
-	private void loadItemsList() {
-		ObservableList<Item> itemsList=FXCollections.observableArrayList();
-		
-		ResultSet results=db.getAllItems();
-		if(results!=null) {
-			try {
-				while(results.next()) {
-					int id=results.getInt("item_id");
-					String name=results.getString("item_name");
-					String category=results.getString("category");
-					String priceStr=results.getString("price");
-					double price=Double.valueOf(priceStr);
-					itemsList.add(new Item(id,name,category,price));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		itemsTableView.getItems().clear();
-		itemsTableView.getItems().setAll(itemsList);
-		
-	}
+//	private void initData() {
+//    	idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//		itemColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+//		categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+//		priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+//	
+//	}
+//	private void loadItemsList() {
+//		ObservableList<Item> itemsList=FXCollections.observableArrayList();
+//		
+//		ResultSet results=db.getAllItems();
+//		if(results!=null) {
+//			try {
+//				while(results.next()) {
+//					int id=results.getInt("item_id");
+//					String name=results.getString("item_name");
+//					String category=results.getString("category");
+//					String priceStr=results.getString("price");
+//					double price=Double.valueOf(priceStr);
+//					itemsList.add(new Item(id,name,category,price));
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		itemsTableView.getItems().clear();
+//		itemsTableView.getItems().setAll(itemsList);
+//		
+//	}
 
     private void loadChoiceBoxData() {
 		ResultSet results=db.getCategory();
@@ -218,7 +202,6 @@ public class AdminController implements Initializable{
 						}
 					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		}
@@ -358,10 +341,10 @@ public class AdminController implements Initializable{
     	String role=roleField.getValue();
     	
     	if(idStr.isEmpty()|| name.isEmpty()|| pass.isEmpty()|| confirmPass.isEmpty()|| role==null) {
-    		JOptionPane.showMessageDialog(null, "Please, fill all fields!", "Adding Item Operation", JOptionPane.WARNING_MESSAGE);
+    		JOptionPane.showMessageDialog(null, "Please, fill all fields!", "Adding Account Operation", JOptionPane.WARNING_MESSAGE);
     		return;
     	}else if(!pass.equals(confirmPass)){
-    		
+    		JOptionPane.showMessageDialog(null, "Password and ConfirmPassword Doesn't Mathch!", "Adding Account Operation", JOptionPane.ERROR_MESSAGE);
     	}else {
     		int id=Integer.valueOf(idStr);
     		ResultSet results=db.checkUser(name,pass,role);
@@ -386,13 +369,68 @@ public class AdminController implements Initializable{
   	}
 
     @FXML
+    void handeBtnProcessAcc(ActionEvent event) throws SQLException {
+  	
+		if(oldIdFieldAcc.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Write item_id you wanna edit/delete and Click Process", "Editing Account Operation", JOptionPane.WARNING_MESSAGE);
+		
+		}else {	
+			String idStr=oldIdFieldAcc.getText();
+			int id=Integer.parseInt(idStr);
+			ResultSet result=db.getAccountById(id);
+			if(result.next()) {
+				String name=result.getString("name");
+		    	String password=result.getString("password");
+		    	String role=result.getString("role");
+				
+		    	accIdField.setText(idStr);
+				accNameField.setText(name);
+				passField.setText(password);
+				confirmField.setText(password);
+				roleField.getSelectionModel().select(role);
+			}else {
+				JOptionPane.showMessageDialog(null, "This Account_id Doesn't Exist.", "Editing/Deleting Account Operation", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+    }
+
+    @FXML
     void handleEditAccount(ActionEvent event) {
-    	
+    	String idStr=accIdField.getText();
+		String name=accNameField.getText();
+    	String password=passField.getText();
+    	String role=roleField.getValue();
+		if(oldIdFieldAcc.getText().isEmpty() || idStr.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Write account_id you wanna edit and Click Process", "Editing Account Operation", JOptionPane.WARNING_MESSAGE);
+		
+		}else {	
+			
+			int id=Integer.parseInt(idStr);				
+			if(idStr.isEmpty()|| name.isEmpty()|| password.isEmpty()|| role==null) {
+	    		JOptionPane.showMessageDialog(null, "Please, fill all fields!", "Editing Account Operation", JOptionPane.WARNING_MESSAGE);
+	    		return;
+	    	}else {
+	    		db.updateAccountData(id,name,password,role);    	
+	    		JOptionPane.showMessageDialog(null, "Editing Account OK.", "Editing Account Operation", JOptionPane.INFORMATION_MESSAGE);
+	    		clearAccountFields();
+	    	}
+		}
     }
 
     @FXML
     void handleDeleteAccount(ActionEvent event) {
-
+    	String idStr=accIdField.getText();
+		
+		if(oldIdFieldAcc.getText().isEmpty() || idStr.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Write account_id you wanna delete and Click Process", "Deleting Account Operation", JOptionPane.WARNING_MESSAGE);
+		
+		}else {	
+			
+			int id=Integer.parseInt(idStr);		
+	    	db.deleteAccountData(id);
+	    	JOptionPane.showMessageDialog(null, "Deleting Account OK.", "Deleting Account Operation", JOptionPane.INFORMATION_MESSAGE);
+	    	clearAccountFields();
+		}
     }
     
     @FXML

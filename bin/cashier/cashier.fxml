@@ -20,15 +20,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="cashierPane" prefHeight="700.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cashier.CashierController">
+<AnchorPane id="AnchorPane" fx:id="cashierPane" prefHeight="700.0" prefWidth="2000.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cashier.CashierController">
    <children>
       <HBox prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane prefHeight="400.0" prefWidth="400.0">
+            <BorderPane prefHeight="700.0" prefWidth="494.0">
                <center>
-                  <VBox fx:id="billPane" alignment="CENTER" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="billPane" alignment="CENTER" prefHeight="675.0" prefWidth="492.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="restaurantName" text="Cafe Cho Cho">
+                        <Label fx:id="restaurantName" text="Paradise">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
@@ -36,33 +36,36 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TableView fx:id="tableView">
+                        <TableView fx:id="tableView" prefHeight="400.0" prefWidth="438.0" style="-fx-border-color: #696969;">
                           <columns>
                             <TableColumn fx:id="itemColumn" minWidth="200.0" prefWidth="75.0" text="Item_Name" />
-                            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+                            <TableColumn fx:id="quantityColumn" minWidth="80.0" text="Quantity" />
                               <TableColumn fx:id="priceColumn" minWidth="90.0" prefWidth="75.0" text="Price" />
                           </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="400.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="438.0" spacing="10.0">
                            <children>
-                              <Label fx:id="totalLabel" text="Total :">
+                              <Label fx:id="totalLabel" prefHeight="17.0" prefWidth="86.0" text="Total :">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="totalField">
+                              <TextField fx:id="totalField" style="-fx-border-color: #696969;">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="editBtn" mnemonicParsing="false" onAction="#handleEditBtn" text="Edit/Delete" />
-                              <Button fx:id="receiptBtn" mnemonicParsing="false" onAction="#handleReceiptBtn" prefHeight="35.0" prefWidth="100.0" text="Receipt">
+                              <Button fx:id="editBtn" mnemonicParsing="false" onAction="#handleEditBtn" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #696969;" text="Edit/Delete" textFill="WHITE" />
+                              <Button fx:id="receiptBtn" mnemonicParsing="false" onAction="#handleReceiptBtn" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #696969;" text="Receipt" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets right="20.0" />
                                  </HBox.margin>
@@ -82,7 +85,7 @@
                   <Insets />
                </HBox.margin>
                <bottom>
-                  <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backToMain" prefHeight="25.0" text="&lt;&lt;&lt;Back" BorderPane.alignment="CENTER">
+                  <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backToMain" prefHeight="48.0" prefWidth="149.0" style="-fx-background-color: #696969;" text="BackToLoginForm" textFill="WHITE" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets right="300.0" />
                      </BorderPane.margin>
@@ -100,7 +103,7 @@
                <top>
                   <VBox prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ChoiceBox fx:id="choiceBox" prefHeight="30.0" prefWidth="180.0">
+                        <ChoiceBox fx:id="choiceBox" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #696969;">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
